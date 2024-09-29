@@ -7,7 +7,7 @@ const session = require("express-session");
 
 app.use(
   session({
-    secret: "itheima",
+    secret: "zhujiayao",
     resave: true,
     saveUninitialized: false,
     cookie: {
