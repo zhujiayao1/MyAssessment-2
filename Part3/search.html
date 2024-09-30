@@ -21,21 +21,20 @@
 
 
 	<body>
-		<form id="searchForm">
+		<div id="searchForm">
 		  <label for="organizer">Organizer:</label>
-		  <input type="text" id="organizer" name="organizer"><br>
+		  <input type="text" id="organizer" name="organizer">
 		
 		  <label for="city">City:</label>
-		  <input type="text" id="city" name="city"><br>
+		  <input type="text" id="city" name="city">
 		
 		  <label for="category">Category:</label>
 		  <input id="category" name="category">
-			<!-- Populate categories here -->
-		  </select><br>
 		
-		  <button type="button" id="searchButton" onclick="onClick_Search()">Search</button>
-		  <button type="button" id="clearButton" onclick="clearChechboxes()">Clear</button>
-		</form>
+		  <button class="button" type="button" id="searchButton" onclick="onClick_Search()">Search</button>
+		  <button class="button" type="button" id="clearButton" onclick="clearChechboxes()">Clear</button>
+		</div>
+		<br>
 		
 		<div id="forms-container"></div>
 		<div id="error-message" class="error" style="display: none;">No fundraisers found.</div>
@@ -50,7 +49,7 @@
 	<script>
 		//clear boxes	
 		function clearChechboxes() {
-			document.getElementById('category').selectedIndex = -1;
+			document.getElementById('category').value = '';
 			document.getElementById('organizer').value = '';
 			document.getElementById('city').value = '';
 		}
@@ -117,7 +116,7 @@
 							<label>${item.CITY}</label><br>
 
 							<label for="category">category:</label>
-							<a href="/search_by_cName?cName=${item.CATEGORY_NAME}" class="category-link">${item.CATEGORY_NAME}</a><br><br><br>
+							<a href="/search?category=${item.CATEGORY_NAME}" class="category-link">${item.CATEGORY_NAME}</a><br><br><br>
 
 							<hr class="separator">
 						</div>
