@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Search Page</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<style>
+		.error {
+		  color: red;
+		  font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h1>Funny Fund Search Page</h1>
+	</header>
+
+
+	<body>
+		<form id="searchForm">
+		  <label for="organizer">Organizer:</label>
+		  <input type="text" id="organizer" name="organizer"><br>
+		
+		  <label for="city">City:</label>
+		  <input type="text" id="city" name="city"><br>
+		
+		  <label for="category">Category:</label>
+		  <select id="category" name="category">
+			<!-- Populate categories here -->
+		  </select><br>
+		
+		  <button type="button" id="searchButton">Search</button>
+		  <button type="button" id="clearButton" onclick="clearCheckboxes()">Clear</button>
+		</form>
+		
+		<div id="results"></div>
+		<div id="error-message" class="error" style="display: none;">No fundraisers found.</div>
+
+	<footer>
+		<!-- footer -->
+		<p>&copy; 2024 Funny Fund</p>
+	</footer>
+
+	<!-- 可以在这里链接JavaScript文件 -->
+	<script src="/js/script.js"></script>
+	<script>
+		//clear boxes	
+		function clearCheckboxes() {
+			document.getElementById('category').selectedIndex = -1;
+			document.getElementById('organizer').value = '';
+			document.getElementById('city').value = '';
+		}
+	
+		document.getElementById('searchButton').addEventListener('click', function() {
+			var organizer = document.getElementById('organizer').value;
+			var city = document.getElementById('city').value;
+			var category = Array.from(document.getElementById('category').selectedOptions).map(option => option.value);
+			
+			// Check if at least one field is filled
+			if (!organizer && !city && !category) {
+				alert('You must select at least one search criteria.');
+				return;
+			}
+
+			// Construct the query string
+			// var queryString = '?';
+			var queryString = new URLSearchParams({ organizer, city, categories: categories.join(',') }).toString();
+			fetch('/search?' + queryString)
+			.then(response => response.json())
+			.then(data => {
+			if (data.length === 0) {
+				document.getElementById('error-message').style.display = 'block';
+				document.getElementById('results').innerHTML = '';
+			} else {
+				document.getElementById('error-message').style.display = 'none';
+				displayResults(data);
+			}
+			})
+			.catch(error => console.error('Error:', error));
+		});
+
+		function displayResults(data) {
+		var resultsDiv = document.getElementById('results');
+		resultsDiv.innerHTML = ''; // Clear previous results
+
+		data.forEach(item => {
+			var div = document.createElement('div');
+			div.innerHTML = `
+			<h3>${item.caption}</h3>
+			<p>Organizer: ${item.organizer}</p>
+			<p>City: ${item.city}</p>
+			<p>Category: ${item.category}</p>
+			<a href="/fundraiser/${item.fundraiser_id}">Details</a>
+			<hr>
+			`;
+		resultsDiv.appendChild(div);
+  });
+}
+	</script>
+</body>
+
+</html>
