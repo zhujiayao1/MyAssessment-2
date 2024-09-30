@@ -1,5 +1,9 @@
 /* 全局样式 */
-body, h1, h2, h3, p {
+body,
+h1,
+h2,
+h3,
+p {
     margin: 0;
     padding: 0;
 }
@@ -9,17 +13,6 @@ body {
     line-height: 1.6;
     background-color: #f7f7f7;
     color: #333;
-}
-
-.image-gallery {
-column-count: 1; /* 只有一列 */
-width: 200px; /* 或者其他宽度，根据需要调整 */
-margin: auto; /* 居中 */
-}
-.image-gallery img {
-width: 100%; /* 图片宽度为容器宽度 */
-height: auto;
-/*margin-bottom: 10px; /* 图片之间的间距 */
 }
 
 .container {
@@ -94,14 +87,35 @@ footer p {
     margin: 0;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-    }
+.result {
+    display: flex;
+    /* 使用flex布局来排列图像和文字 */
+    align-items: center;
+    /* 垂直居中 */
+    margin-bottom: 20px;
+    margin-top: 10px;
+    /* 每个结果之间的间距 */
+}
 
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
+.result img {
+    max-width: 200px;
+    /* 设置图像最大宽度为100像素 */
+    max-height: 200px;
+    /* 设置图像最大高度为100像素 */
+    width: auto;
+    /* 宽度自适应 */
+    height: auto;
+    /* 高度自适应 */
+    margin-right: 40px;
+    /* 图像和文字之间的间距 */
+}
+
+.result .text {
+    flex-grow: 1;
+    /* 文字区域可以扩展 */
+}
+
+/* 分割样式 */
+.separator {
+    margin: 20px 0; /* 分隔符上下间距 */
 }
