@@ -79,7 +79,7 @@ app.get('/search', (req, res) => {
     params.push(city);
   }
   if (category) {
-    conditions.push('category_id = (SELECT CATEGORY_ID FROM category WHERE name = ?)');
+    conditions.push('name = ?');
     params.push(category);
   }
 
