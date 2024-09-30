@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>主页</title>
+  <!-- 可以在这里链接CSS文件 -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to Funny Fund </h1>
+  </header>
+  
+  
+  <!-- <div class="image-gallery">
+	  <img src="img/2.jpg" alt="Image 2">
+  </div>
+   -->
+
+  <!-- 创建用于显示数据的容器 -->
+	<div id="data-container">
+	  <!-- 数据将被绑定在这里 -->
+	</div>
+	  
+  <main>
+    <!-- 在这里添加主页内容 -->
+    <p>Funny Fund web</p>
+	<p>Helping people help each other。</p>
+    <!-- 更多内容... -->
+  </main>
+  
+  <footer>
+    <!-- 在这里添加页脚内容 -->
+    <p>&copy; 2024 Funny Fund</p>
+  </footer>
+  
+  <!-- 可以在这里链接JavaScript文件 -->
+  <script src="/js/script.js"></script>
+  <script>
+	// 定义一个函数来获取数据并绑定到HTML
+	function fetchData() {
+	  // 创建一个新的XMLHttpRequest对象
+	  var xhr = new XMLHttpRequest();
+	  
+	  // 配置GET请求，指向你的RESTful API
+	  xhr.open('GET', 'http://localhost:3000/fundraisers', true);
+	  
+	  // 设置请求完成的回调函数
+	  xhr.onload = function () {
+		if (xhr.status >= 200 && xhr.status < 300) {
+		  // 请求成功，解析返回的数据
+		  var data = JSON.parse(xhr.responseText);
+		  
+		  // 创建一个字符串来构建HTML内容
+		  var htmlString = '<ul>';
+		  data.forEach(function(item) {
+			// 假设数据是一个对象数组，每个对象都有一个name属性
+			htmlString += '<li>' + item.name + '</li>';
+		  });
+		  htmlString += '</ul>';
+		  
+		  // 将构建的HTML内容绑定到容器元素
+		  document.getElementById('data-container').innerHTML = htmlString;
+		} else {
+		  // 请求失败，处理错误
+		  console.error('The request failed!');
+		}
+	  };
+	  
+	  // 发送请求
+	  xhr.send();
+	}
+
+	// 页面加载完成后调用fetchData函数
+	document.addEventListener('DOMContentLoaded', fetchData);
+	</script>
+
+</body>
+</html>
