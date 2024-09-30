@@ -1,117 +1,93 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>主页</title>
-  <!-- 可以在这里链接CSS文件 -->
-  <link rel="stylesheet" href="css/styles.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>主页</title>
+	<!-- 可以在这里链接CSS文件 -->
+	<link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-  <header>
-    <h1>Welcome to Funny Fund </h1>
-  </header>
-  
-  
-  <!-- <div class="image-gallery">
+	<header>
+		<h1>Welcome to Funny Fund </h1>
+	</header>
+
+
+	<!-- <div class="image-gallery">
 	  <img src="img/2.jpg" alt="Image 2">
   </div>
    -->
 
 
-  <!-- 表单容器 -->
-	<div id="forms-container"></div>
+	<!-- 表单容器 -->
+	<div id="forms-container">
+	</div>
 
-	<!-- 创建表单 -->
-	<!-- <form id="data-form">
-		<label for="organizer">organizer:</label>
-		<input type="text" id="organizer" name="organizer"><br><br>
-		
-		<label for="caption">caption:</label>
-		<input type="text" id="caption" name="caption"><br><br>
 
-		<label for="target_funding">target funding:</label>
-		<input type="number" id="target" name="target"><br><br>
+	<main>
+		<!-- 在这里添加主页内容 -->
+		<p>Funny Fund web</p>
+		<p>Helping people help each other。</p>
+		<!-- 更多内容... -->
+	</main>
 
-		<label for="current_funding">current funding:</label>
-		<input type="number" id="current" name="current"><br><br>
+	<footer>
+		<!-- footer -->
+		<p>&copy; 2024 Funny Fund</p>
+	</footer>
 
-		<label for="city">city:</label>
-		<input type="text" id="city" name="city"><br><br>
-		
+	<!-- 可以在这里链接JavaScript文件 -->
+	<script src="/js/script.js"></script>
+	<script>
+		// 定义一个函数来获取数据并填充表单
+		function fetchDataAndPopulateForm() {
+			fetch('http://localhost:3000/fundraisers')
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok ' + response.statusText);
+					}
+					return response.json();
+				})
+				.then(data => {
 
-		<label for="category_name">category:</label>
-		<input type="text" id="category" name="category"><br><br>
-		
-		<input type="submit" value="Submit">
-	</form> -->
+					// 遍历数据并创建表单
+					data.forEach(item => {
+						// 创建表单元素
+						const form = document.createElement('form');
+						form.innerHTML = `
+						<label for="organizer">organizer:</label>
+						<label>${item.ORGANIZER}</label><br>
+						
+						<label for="caption">caption:</label>
+						<label>${item.CAPTION}</label><br>
+						
+						<label for="target">target funding:</label>
+						<label>${item.TARGET_FUNDING}</label><br>
 
-	  
-  <main>
-    <!-- 在这里添加主页内容 -->
-    <p>Funny Fund web</p>
-	<p>Helping people help each other。</p>
-    <!-- 更多内容... -->
-  </main>
-  
-  <footer>
-    <!-- footer -->
-    <p>&copy; 2024 Funny Fund</p>
-  </footer>
-  
-  <!-- 可以在这里链接JavaScript文件 -->
-  <script src="/js/script.js"></script>
-  <script>
-	// 定义一个函数来获取数据并填充表单
-	function fetchDataAndPopulateForm() {
-	  fetch('http://localhost:3000/fundraisers')
-		.then(response => {
-		  if (!response.ok) {
-			throw new Error('Network response was not ok ' + response.statusText);
-		  }
-		  return response.json();
-		})
-		.then(data => {
-		   // 获取表单容器
-		   const container = document.getElementById('forms-container');
-      // 清空容器
-      container.innerHTML = '';
+						<label for="current">current funding:</label>
+						<label>${item.CURRENT_FUNDING}</label><br>
 
-      // 遍历数据并创建表单
-      data.forEach(item => {
-        // 创建表单元素
-        const form = document.createElement('form');
-        form.innerHTML = `
-          <label for="organizer-${item.id}">organizer:</label>
-          <type="text" id="organizer-${item.id}" name="organizer" value="${item.ORGANIZER}"><br><br>
-          
-          <label for="caption-${item.id}">caption:</label>
-          <type="text" id="caption-${item.id}" name="caption" value="${item.CAPTION}"><br><br>
-          
-		  <label for="target-${item.id}">target funding:</label>
-          <type="number" id="target-${item.id}" name="target" value="${item.TARGET_FUNDING}"><br><br>
+						<label for="city">city:</label>
+						<label>${item.CITY}</label><br>
 
-		  <label for="current-${item.id}">current funding:</label>
-          <type="number" id="current-${item.id}" name="current" value="${item.CURRENT_FUNDING}"><br><br>
+						<label for="category">category:</label>
+						<label>${item.CATEGORY_NAME}</label><br><br><br>
 
-		  <label for="city-${item.id}">city:</label>
-          <type="text" id="city-${item.id}" name="city" value="${item.CITY}"><br><br>
+						`;
+						// 将表单添加到容器中
+						document.getElementById('forms-container').appendChild(form);
+					});
+				})
+				.catch(error => {
+					console.error('There has been a problem with your fetch operation: ', error);
+				});
+		}
 
-          <label for="category-${item.id}">category:</label>
-          <type="text" id="category-${item.id}" name="category" value="${item.CATEGORY_NAME}"><br><br>
-        `;
-        // 将表单添加到容器中
-        container.appendChild(form);
-      });
-    })
-		.catch(error => {
-		  console.error('There has been a problem with your fetch operation: ', error);
-		});
-	}
-	
-	// 页面加载完成后调用fetchDataAndPopulateForm函数
-	document.addEventListener('DOMContentLoaded', fetchDataAndPopulateForm);
+		// 页面加载完成后调用fetchDataAndPopulateForm函数
+		document.addEventListener('DOMContentLoaded', fetchDataAndPopulateForm);
 	</script>
 </body>
+
 </html>
