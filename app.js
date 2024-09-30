@@ -17,6 +17,10 @@ app.get('/', (req, res) => {
   //index.html
   res.sendFile(__dirname + '/Part3/index.html');
 });
+app.get('/search', (req, res) => {
+  //index.html
+  res.sendFile(__dirname + '/Part3/search.html');
+});
 
 
 // Create a database connection.
