@@ -41,7 +41,7 @@ app.listen(port, () => {
 //fundraisers
 app.get('/fundraisers', (req, res) => {
   const query = `
-    SELECT * FROM fundraiser;
+    SELECT *,name as CATEGORY_NAME FROM fundraiser join category;
   `;
   connection.query(query, (err, results) => {
     if (err) throw err;
