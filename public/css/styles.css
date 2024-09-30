@@ -119,3 +119,7 @@ footer p {
 .separator {
     margin: 20px 0; /* 分隔符上下间距 */
 }
+
+.button {
+    width: 100px;
+}
