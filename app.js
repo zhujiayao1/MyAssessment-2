@@ -18,8 +18,8 @@ app.use(
 app.use(express.static(path.join(__dirname, "./public")));
 
 //导入路由
-const admin = require("./router/admin");
-app.use("/admin", admin);
+//const admin = require("./router/admin");
+//app.use("/admin", admin);
 
 //启用监听
 app.listen(666, () => {
