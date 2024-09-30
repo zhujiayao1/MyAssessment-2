@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>主页</title>
+	<title>Funny Fund</title>
 	<!-- 可以在这里链接CSS文件 -->
 	<link rel="stylesheet" href="css/styles.css">
 </head>
@@ -27,10 +27,8 @@
 
 
 	<main>
-		<!-- 在这里添加主页内容 -->
 		<p>Funny Fund web</p>
-		<p>Helping people help each other。</p>
-		<!-- 更多内容... -->
+		<p>Helping people help each other.</p>
 	</main>
 
 	<footer>
@@ -57,24 +55,31 @@
 						// 创建表单元素
 						const form = document.createElement('form');
 						form.innerHTML = `
-						<label for="organizer">organizer:</label>
-						<label>${item.ORGANIZER}</label><br>
+							<div class="result">
+								<img src="img/2.jpg" alt="Image 2">
+								<div class="text"> 
+									<label for="organizer">organizer:</label>
+							<label>${item.ORGANIZER}</label><br>
+							
+							<label for="caption">caption:</label>
+							<label>${item.CAPTION}</label><br>
+							
+							<label for="target">target funding:</label>
+							<label>${item.TARGET_FUNDING}</label><br>
+
+							<label for="current">current funding:</label>
+							<label>${item.CURRENT_FUNDING}</label><br>
+
+							<label for="city">city:</label>
+							<label>${item.CITY}</label><br>
+
+							<label for="category">category:</label>
+							<a href="/search_by_cName?cName=${item.CATEGORY_NAME}" class="category-link">${item.CATEGORY_NAME}</a><br><br><br>
+
+							<hr class="separator">
+								</div>
+							</div>
 						
-						<label for="caption">caption:</label>
-						<label>${item.CAPTION}</label><br>
-						
-						<label for="target">target funding:</label>
-						<label>${item.TARGET_FUNDING}</label><br>
-
-						<label for="current">current funding:</label>
-						<label>${item.CURRENT_FUNDING}</label><br>
-
-						<label for="city">city:</label>
-						<label>${item.CITY}</label><br>
-
-						<label for="category">category:</label>
-						<label>${item.CATEGORY_NAME}</label><br><br><br>
-
 						`;
 						// 将表单添加到容器中
 						document.getElementById('forms-container').appendChild(form);
