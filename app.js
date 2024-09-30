@@ -59,7 +59,14 @@ app.get('/fundraisers', (req, res) => {
 //search 
 app.get('/search', (req, res) => {
   const { organizer, city, category } = req.query;
-  let query = 'SELECT * FROM fundraiser WHERE ';
+  let query = `
+    SELECT *,name as CATEGORY_NAME 
+    FROM fundraiser f 
+    LEFT JOIN category c 
+    ON f.CATEGORY_ID = c.CATEGORY_ID
+    WHERE 
+  `;
+  
   let conditions = [];
   let params = [];
 
@@ -77,7 +84,7 @@ app.get('/search', (req, res) => {
   }
 
   query += conditions.join(' AND ');
-
+  query+=' '
 
   connection.query(query, params, (err, results) => {
     if (err) throw err;
