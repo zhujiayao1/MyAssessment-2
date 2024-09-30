@@ -41,7 +41,9 @@ app.listen(port, () => {
 //fundraisers
 app.get('/fundraisers', (req, res) => {
   const query = `
-    SELECT *,name as CATEGORY_NAME FROM fundraiser join category;
+    SELECT *,name as CATEGORY_NAME 
+    FROM fundraiser f
+    LEFT JOIN category c ON f.CATEGORY_ID = C.CATEGORY_ID;
   `;
   connection.query(query, (err, results) => {
     if (err) throw err;
