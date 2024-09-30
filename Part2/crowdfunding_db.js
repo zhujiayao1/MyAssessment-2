@@ -1,3 +1,5 @@
+//RESTful API
+
 //This JS file is the a continuation of Part 1.
 //So the first few lines of this file are the same as those in the "crowdfunding_db.js" file which in Part1
 
@@ -81,13 +83,13 @@ app.get('/fundraiser/:id', (req, res) => {
   });
 });
 
-// 错误处理中间件
+// Err exec
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
 
-// 关闭数据库连接
+// Close db
 process.on('SIGINT', () => {
   connection.end(err => {
     if (err) console.error('Error closing the connection:', err.stack);
