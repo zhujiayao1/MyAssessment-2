@@ -4,20 +4,20 @@ const mysql = require('mysql');
 const app = express();
 const port = 3000;
 
-// 创建数据库连接
+//Create a database connection.
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'root',
   database: 'crowdfunding_db'
 });
-// 连接数据库
+// Establish a database connection.
 connection.connect(err => {
   if (err) throw err;
   console.log('Connected to the database.');
 });
 
-// 启动Express服务器
+//To start an Express server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
