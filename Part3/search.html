@@ -29,12 +29,12 @@
 		  <input type="text" id="city" name="city"><br>
 		
 		  <label for="category">Category:</label>
-		  <select id="category" name="category">
+		  <input id="category" name="category">
 			<!-- Populate categories here -->
 		  </select><br>
 		
-		  <button type="button" id="searchButton">Search</button>
-		  <button type="button" id="clearButton" onclick="clearCheckboxes()">Clear</button>
+		  <button type="button" id="searchButton" onclick="onClick_Search()">Search</button>
+		  <button type="button" id="clearButton" onclick="clearChechboxes()">Clear</button>
 		</form>
 		
 		<div id="results"></div>
@@ -49,16 +49,16 @@
 	<script src="/js/script.js"></script>
 	<script>
 		//clear boxes	
-		function clearCheckboxes() {
+		function clearChechboxes() {
 			document.getElementById('category').selectedIndex = -1;
 			document.getElementById('organizer').value = '';
 			document.getElementById('city').value = '';
 		}
 	
-		document.getElementById('searchButton').addEventListener('click', function() {
+		function onClick_Search() {
 			var organizer = document.getElementById('organizer').value;
 			var city = document.getElementById('city').value;
-			var category = Array.from(document.getElementById('category').selectedOptions).map(option => option.value);
+			var category = document.getElementById('category').value;
 			
 			// Check if at least one field is filled
 			if (!organizer && !city && !category) {
@@ -67,9 +67,17 @@
 			}
 
 			// Construct the query string
-			// var queryString = '?';
-			var queryString = new URLSearchParams({ organizer, city, categories: categories.join(',') }).toString();
-			fetch('/search?' + queryString)
+			var queryString = '?';
+			if (organizer) queryString += 'organizer=' + encodeURIComponent(organizer) + '&';
+			if (city) queryString += 'city=' + encodeURIComponent(city) + '&';
+			if (category) queryString += 'category=' + encodeURIComponent(category);
+			
+			// Remove the last '&' if it exists
+			if (queryString.endsWith('&')) {
+				queryString = queryString.slice(0, -1);
+			}
+
+			fetch('/search' + queryString)
 			.then(response => response.json())
 			.then(data => {
 			if (data.length === 0) {
@@ -81,7 +89,7 @@
 			}
 			})
 			.catch(error => console.error('Error:', error));
-		});
+		}
 
 		function displayResults(data) {
 		var resultsDiv = document.getElementById('results');
