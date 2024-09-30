@@ -1,0 +1,107 @@
+/* 全局样式 */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.image-gallery {
+column-count: 1; /* 只有一列 */
+width: 200px; /* 或者其他宽度，根据需要调整 */
+margin: auto; /* 居中 */
+}
+.image-gallery img {
+width: 100%; /* 图片宽度为容器宽度 */
+height: auto;
+/*margin-bottom: 10px; /* 图片之间的间距 */
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* 导航样式 */
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    color: #ddd;
+}
+
+/* 头部样式 */
+header {
+    background: #50b3a2;
+    color: #fff;
+    padding-top: 10px;
+    min-height: 80px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+header p {
+    font-size: 20px;
+}
+
+/* 主内容区域样式 */
+main {
+    padding: 20px 0;
+}
+
+/* 页脚样式 */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}
