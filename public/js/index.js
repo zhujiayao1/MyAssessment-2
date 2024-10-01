@@ -15,24 +15,24 @@
                             <img src="img/2.jpg" alt="Image 2">
                             <div class="text"> 
                                 <label for="organizer">organizer:</label>
-                        <label>${item.ORGANIZER}</label><br>
-                        
-                        <label for="caption">caption:</label>
-                        <label>${item.CAPTION}</label><br>
-                        
-                        <label for="target">target funding:</label>
-                        <label>${item.TARGET_FUNDING}</label><br>
+                                <label>${item.ORGANIZER}</label><br>
+                                
+                                <label for="caption">caption:</label>
+                                <label>${item.CAPTION}</label><br>
+                                
+                                <label for="target">target funding:</label>
+                                <label>${item.TARGET_FUNDING}</label><br>
 
-                        <label for="current">current funding:</label>
-                        <label>${item.CURRENT_FUNDING}</label><br>
+                                <label for="current">current funding:</label>
+                                <label>${item.CURRENT_FUNDING}</label><br>
 
-                        <label for="city">city:</label>
-                        <label>${item.CITY}</label><br>
+                                <label for="city">city:</label>
+                                <label>${item.CITY}</label><br>
 
-                        <label for="category">category:</label>
-                        <a href="/search?category=${item.CATEGORY_NAME}" class="category-link">${item.CATEGORY_NAME}</a><br><br><br>
+                                <label for="category">category:</label>
+                                <a href="/search?category=${item.CATEGORY_NAME}" class="category-link">${item.CATEGORY_NAME}</a><br><br><br>
 
-                        <hr class="separator">
+                                <hr class="separator">
                             </div>
                         </div>
                     

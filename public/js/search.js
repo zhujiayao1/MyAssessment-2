@@ -44,15 +44,13 @@ function onClick_Search() {
 
 function displayResults(data) {
     
-    // 遍历数据并创建表单
     data.forEach(item => {
-        // 创建表单元素
         const form = document.createElement('form');
         form.innerHTML = `
             <div class="result">
                 <div class="text"> 
                     <label for="organizer">organizer:</label>
-                    <label>${item.ORGANIZER}</label><br>
+                    <a href="/fundraiser_page?fid=${item.FUNDRAISER_ID}">${item.ORGANIZER}</a><br>
                     
                     <label for="caption">caption:</label>
                     <label>${item.CAPTION}</label><br>
@@ -67,7 +65,7 @@ function displayResults(data) {
                     <label>${item.CITY}</label><br>
 
                     <label for="category">category:</label>
-                    <a href="/search?category=${item.CATEGORY_NAME}" class="category-link">${item.CATEGORY_NAME}</a><br><br><br>
+                    <a href="/search?category=${item.CATEGORY_NAME}">${item.CATEGORY_NAME}</a><br><br><br>
 
                     <hr class="separator">
                 </div>
