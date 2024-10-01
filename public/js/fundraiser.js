@@ -1,17 +1,17 @@
-function showDonationMessage(){
+function showDonationMessage() {
     alert('This feature is under contruction.');
 }
 
 function getQueryParam(paramName) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(paramName);
-  }
+}
 
-  const id = getQueryParam('fid');
-  console.log(id);
+const id = getQueryParam('fid');
+console.log(id);
 
-  function fetchDataAndPopulateForm() {
-    fetch('http://localhost:3000/fundraiser/'+id)
+function fetchDataAndPopulateForm() {
+    fetch('http://localhost:3000/fundraiser/' + id)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
@@ -53,6 +53,6 @@ function getQueryParam(paramName) {
         .catch(error => {
             console.error('There has been a problem with your fetch operation: ', error);
         });
-    }
-    
-    document.addEventListener('DOMContentLoaded', fetchDataAndPopulateForm);
+}
+
+document.addEventListener('DOMContentLoaded', fetchDataAndPopulateForm);
