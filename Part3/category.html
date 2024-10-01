@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <meta charset="utf-8" />
+    <title>Fundraiser Details</title>
+    <style>
+      .fundraiser-detail {
+        background-color: white;
+        padding: 30px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        margin: auto; /* Centering the card */
+      }
+      .content {
+        padding: 100px !important;
+      }
+
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      /* p {
+        margin: 10px 0;
+        font-size: 16px;
+        color: #555;
+      } */
+      strong {
+        color: #333;
+      }
+      .donate-button {
+        display: block;
+        padding: 10px;
+        margin-top: 20px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        background-color: #28a745; /* Green color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        text-align: center;
+      }
+      .donate-button:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        background-color: #61e27f;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Funny Fund Fundraiser Details </h1>
+    </header>
+    <div class="content">
+      <!-- Fundraising event details will be inserted here -->
+      <div class="fundraiser-detail">
+        <span>
+            <img src="/img/3.jpg" alt="Image 3" style="
+            max-width: 200px;
+            max-height: 200px;
+            width: auto;
+            height: auto;
+            margin-right: 40px;
+            "
+            />
+        
+          <!-- form container -->
+          <div id="forms-container">
+          </div>
+
+        </span>
+        
+
+          <button class="donate-button" onclick="showDonationMessage()">
+            Donate
+          </button>
+      </div>
+    </div>
+
+    <footer>
+      <!-- footer -->
+      <p>&copy; 2024 Funny Fund</p>
+    </footer>
+  
+    <script>
+      
+      function getQueryParam(paramName) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(paramName);
+      }
+
+      const id = getQueryParam('fid');
+      console.log(id);
+
+      function fetchDataAndPopulateForm() {
+        fetch('http://localhost:3000/fundraiser/'+id)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.forEach(item => {
+                    // create form
+                    const form = document.createElement('form');
+                    form.innerHTML = `
+
+                        <label for="organizer">Organizer:</label>
+                        <label>${item.ORGANIZER}</label><br>
+                        
+                        <label for="caption">Caption:</label>
+                        <label>${item.CAPTION}</label><br>
+                        
+                        <label for="target">Target Funding:</label>
+                        <label>${item.TARGET_FUNDING}</label><br>
+
+                        <label for="current">Current Funding:</label>
+                        <label>${item.CURRENT_FUNDING}</label><br>
+
+                        <label for="city">City:</label>
+                        <label>${item.CITY}</label><br>
+
+                        <label for="category">Category:</label>
+                        <a href="/search?category=${item.CATEGORY_NAME}" class="category-link">${item.CATEGORY_NAME}</a><br><br><br>
+
+                        <hr class="separator">
+                            </div>
+                        </div>
+                    
+                    `;
+                    document.getElementById('forms-container').appendChild(form);
+                });
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation: ', error);
+            });
+        }
+        
+		document.addEventListener('DOMContentLoaded', fetchDataAndPopulateForm);
+    </script>
+  </body>
+</html>
