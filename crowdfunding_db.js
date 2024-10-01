@@ -95,20 +95,6 @@ app.get('/search', (req, res) => {
   });
 });
 
-// //search by city
-// app.get('/search_by_city', (req, res) => {
-//   const city = req.query.city; 
-//   const query = `
-//     SELECT *
-//     FROM fundraiser
-//     WHERE city = ?;
-//   `;
-//   connection.query(query, city, (err, results) => {
-//     if (err) throw err;
-//     res.json(results);
-//   });
-// });
-
 //search fundraiser by id
 app.get('/fundraiser/:id', (req, res) => {
   const fundraiserId = req.params.id;
