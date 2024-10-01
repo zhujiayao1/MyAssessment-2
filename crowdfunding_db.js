@@ -5,26 +5,9 @@
 
 const express = require('express');
 const mysql = require('mysql');
-
-const app = express();
 const port = 3000;
+const app = express();
 
-// statics，CSS、JavaScript
-app.use(express.static('public'));
-
-
-app.get('/', (req, res) => {
-  //index.html
-  res.sendFile(__dirname + '/Part3/index.html');
-});
-app.get('/search_page', (req, res) => {
-  //index.html
-  res.sendFile(__dirname + '/Part3/search.html');
-});
-app.get('/fundraiser_page', (req, res) => {
-  //index.html
-  res.sendFile(__dirname + '/Part3/fundraiser.html');
-});
 
 // Create a database connection.
 const connection = mysql.createConnection({
@@ -45,6 +28,7 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
+//-------------------------------------Part 2--------------------
 //fundraisers
 app.get('/fundraisers', (req, res) => {
   const query = `
@@ -109,6 +93,25 @@ app.get('/fundraiser/:id', (req, res) => {
     res.json(results); 
   });
 });
+
+//----------------------------------Part 3-----------------------------
+// CSS、JavaScript
+app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+  //index.html
+  res.sendFile(__dirname + '/Part3/index.html');
+});
+app.get('/search_page', (req, res) => {
+  //search.html
+  res.sendFile(__dirname + '/Part3/search.html');
+});
+app.get('/fundraiser_page', (req, res) => {
+  //fundraiser.html
+  res.sendFile(__dirname + '/Part3/fundraiser.html');
+});
+
+
 
 // Err exec
 app.use((err, req, res, next) => {
