@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Funny Fund</title>
-	<!-- 可以在这里链接CSS文件 -->
+	<!-- CSS -->
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -14,17 +14,9 @@
 		<h1>Welcome to Funny Fund </h1>
 	</header>
 
-
-	<!-- <div class="image-gallery">
-	  <img src="img/2.jpg" alt="Image 2">
-  </div>
-   -->
-
-
-	<!-- 表单容器 -->
+	<!-- form container -->
 	<div id="forms-container">
 	</div>
-
 
 	<main>
 		<p>Funny Fund web</p>
@@ -36,63 +28,9 @@
 		<p>&copy; 2024 Funny Fund</p>
 	</footer>
 
-	<!-- 可以在这里链接JavaScript文件 -->
-	<script src="/js/script.js"></script>
-	<script>
-		// 定义一个函数来获取数据并填充表单
-		function fetchDataAndPopulateForm() {
-			fetch('http://localhost:3000/fundraisers')
-				.then(response => {
-					if (!response.ok) {
-						throw new Error('Network response was not ok ' + response.statusText);
-					}
-					return response.json();
-				})
-				.then(data => {
+	<!-- JavaScript -->
+	<script src="/js/index.js"></script>
 
-					// 遍历数据并创建表单
-					data.forEach(item => {
-						// 创建表单元素
-						const form = document.createElement('form');
-						form.innerHTML = `
-							<div class="result">
-								<img src="img/2.jpg" alt="Image 2">
-								<div class="text"> 
-									<label for="organizer">organizer:</label>
-							<label>${item.ORGANIZER}</label><br>
-							
-							<label for="caption">caption:</label>
-							<label>${item.CAPTION}</label><br>
-							
-							<label for="target">target funding:</label>
-							<label>${item.TARGET_FUNDING}</label><br>
-
-							<label for="current">current funding:</label>
-							<label>${item.CURRENT_FUNDING}</label><br>
-
-							<label for="city">city:</label>
-							<label>${item.CITY}</label><br>
-
-							<label for="category">category:</label>
-							<a href="/search?category=${item.CATEGORY_NAME}" class="category-link">${item.CATEGORY_NAME}</a><br><br><br>
-
-							<hr class="separator">
-								</div>
-							</div>
-						
-						`;
-						// 将表单添加到容器中
-						document.getElementById('forms-container').appendChild(form);
-					});
-				})
-				.catch(error => {
-					console.error('There has been a problem with your fetch operation: ', error);
-				});
-		}
-
-		// 页面加载完成后调用fetchDataAndPopulateForm函数
-		document.addEventListener('DOMContentLoaded', fetchDataAndPopulateForm);
-	</script>
 </body>
 
 </html>
