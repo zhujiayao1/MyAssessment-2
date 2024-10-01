@@ -1,10 +1,14 @@
+<!--
+ * @Descripttion: A3-ionic
+ * @Author: Zhujiayao & Chengshuhan
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="/css/fundraiser.css" />
-    <link rel="stylesheet" type="text/css" href="/css/rest.css" />
+
+    <link rel="stylesheet" href="css/styles.css">
     <meta charset="utf-8" />
-    <title>Search for Fundraising Events</title>
+    <title>Fundraiser Details</title>
     <style>
       .fundraiser-detail {
         background-color: white;
@@ -23,11 +27,11 @@
         text-align: center;
         color: #333;
       }
-      p {
+      /* p {
         margin: 10px 0;
         font-size: 16px;
         color: #555;
-      }
+      } */
       strong {
         color: #333;
       }
@@ -35,6 +39,7 @@
         display: block;
         padding: 10px;
         margin-top: 20px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
         background-color: #28a745; /* Green color */
         color: white;
         border: none;
@@ -44,83 +49,51 @@
         text-align: center;
       }
       .donate-button:hover {
-        background-color: #218838; /* Darker green on hover */
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        background-color: #61e27f;
       }
+      .forms-container {
+        display: flex;
+        align-items: center; /* 垂直居中对齐 */
+        margin-bottom: 20px; /* 添加一些间距 */
+      }
+
+      .forms-container img {
+        margin-right: 20px; /* 在图片和数据之间添加间距 */
+        width: 100px; /* 设置图片宽度 */
+        height: auto; /* 保持图片的宽高比 */
+      }
+
+
     </style>
   </head>
   <body>
-    <div class="head"></div>
+    <header>
+      <h1>Funny Fund Fundraiser Details </h1>
+    </header>
     <div class="content">
       <!-- Fundraising event details will be inserted here -->
       <div class="fundraiser-detail">
-        <img
-          src="/img/picture17.jpg"
-          alt="Event Image"
-          style="margin-left: 44%; width: 266px; height: auto"
-        />
-        <div>
-          <h2>Fundraising Event Details</h2>
-          <p><strong>Organizer:</strong> <span id="organizer"></span></p>
-          <p><strong>Title:</strong> <span id="caption"></span></p>
-          <p>
-            <strong>Target Funding:</strong> <span id="target-funding"></span>
-          </p>
-          <p>
-            <strong>Current Funding:</strong> <span id="current-funding"></span>
-          </p>
-          <p><strong>City:</strong> <span id="city"></span></p>
-          <p><strong>Category:</strong> <span id="category-name"></span></p>
-          <p><strong>Content:</strong> <span id="Content"></span></p>
+          <!-- form container -->
+          <div class="forms-container" id="forms-container" style="margin-top:20px">
+            <img src="/img/3.jpg" alt="Image 3" />
 
-          <button class="donate-button" onclick="showDonationMessage()">
-            Donate
-          </button>
-        </div>
+          </div>
+     
+        
+
+        <button class="donate-button" style="margin-left: auto;"  onclick="showDonationMessage()">
+          Donate
+        </button>
       </div>
     </div>
-    <div class="footers"></div>
-    <script>
-      fetch("http://localhost:8085/head")
-        .then((response) => response.text())
-        .then((data) => {
-          document.querySelector(".head").innerHTML = data;
-        });
 
-      fetch("http://localhost:8085/foot")
-        .then((response) => response.text())
-        .then((data) => {
-          document.querySelector(".footers").innerHTML = data;
-        });
-
-      fetch(
-        `http://localhost:8085/api/queryById?id=${encodeURIComponent(
-          "<%= id %>"
-        )}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          // Insert data into the page
-          document.getElementById("organizer").innerText = data.ORGANIZER;
-          document.getElementById("caption").innerText = data.CAPTION;
-          document.getElementById(
-            "target-funding"
-          ).innerText = `${data.TARGET_FUNDING} USD`; // Add currency unit
-          document.getElementById(
-            "current-funding"
-          ).innerText = `${data.CURRENT_FUNDING} USD`; // Add currency unit
-          document.getElementById("city").innerText = data.CITY;
-          document.getElementById("category-name").innerText =
-            data.category_name;
-          document.getElementById("Content").innerText = data.CONTENT;
-        })
-        .catch((error) => {
-          console.error("error:", error);
-        });
-
-      function showDonationMessage() {
-        alert("This feature is under construction");
-      }
+    <footer>
+      <!-- footer -->
+      <p>&copy; 2024 Funny Fund</p>
+    </footer>
+  
+    <script  src="/js/fundraiser.js">
     </script>
   </body>
 </html>

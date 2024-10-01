@@ -99,9 +99,9 @@ footer p {
 
 .result img {
     max-width: 200px;
-    /* 设置图像最大宽度为100像素 */
+    /* 设置图像最大宽度为200像素 */
     max-height: 200px;
-    /* 设置图像最大高度为100像素 */
+    /* 设置图像最大高度为200像素 */
     width: auto;
     /* 宽度自适应 */
     height: auto;
