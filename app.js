@@ -113,8 +113,9 @@ app.get('/search', (req, res) => {
 app.get('/fundraiser/:id', (req, res) => {
   const fundraiserId = req.params.id;
   const query = `
-    SELECT *
-    FROM fundraiser
+    SELECT *,name as CATEGORY_NAME 
+    FROM fundraiser f
+    LEFT JOIN category c ON f.CATEGORY_ID = C.CATEGORY_ID
     WHERE fundraiser_id = ?;
   `;
   connection.query(query, fundraiserId, (err, results) => {
