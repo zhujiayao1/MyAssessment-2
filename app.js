@@ -12,7 +12,7 @@ const port = 3000;
 // statics，CSS、JavaScript
 app.use(express.static('public'));
 
-// router
+
 app.get('/', (req, res) => {
   //index.html
   res.sendFile(__dirname + '/Part3/index.html');
@@ -21,7 +21,10 @@ app.get('/search_page', (req, res) => {
   //index.html
   res.sendFile(__dirname + '/Part3/search.html');
 });
-
+app.get('/fundraiser_page', (req, res) => {
+  //index.html
+  res.sendFile(__dirname + '/Part3/fundraiser.html');
+});
 
 // Create a database connection.
 const connection = mysql.createConnection({
