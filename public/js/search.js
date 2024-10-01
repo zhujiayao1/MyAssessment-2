@@ -72,7 +72,6 @@ function displayResults(data) {
             </div>
         
         `;
-        // 将表单添加到容器中
         document.getElementById('forms-container').appendChild(form);
     });
  }
