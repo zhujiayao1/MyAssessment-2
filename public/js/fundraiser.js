@@ -1,3 +1,7 @@
+function showDonationMessage(){
+    alert('This feature is under contruction.');
+}
+
 function getQueryParam(paramName) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(paramName);
