@@ -28,17 +28,17 @@ function onClick_Search() {
     }
 
     fetch('/search' + queryString)
-    .then(response => response.json())
-    .then(data => {
-    if (data.length === 0) {
-        document.getElementById('error-message').style.display = 'block';
-        document.getElementById('results').innerHTML = '';
-    } else {
-        document.getElementById('error-message').style.display = 'none';
-        displayResults(data);
-    }
-    })
-    .catch(error => console.error('Error:', error));
+        .then(response => response.json())
+        .then(data => {
+        if (data.length === 0) {
+            document.getElementById('error-message').style.display = 'block';
+            document.getElementById('results').innerHTML = '';
+        } else {
+            document.getElementById('error-message').style.display = 'none';
+            displayResults(data);
+        }
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 
